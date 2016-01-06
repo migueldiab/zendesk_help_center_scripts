@@ -20,7 +20,7 @@ item_payload = {:ticket_field=>{}}
 
 #Delete Sandbox Fields
 del_items = sandbox.get("/ticket_fields.json")
-del_items.each do |del_item| 
+del_items.each do |del_item|
 	if del_item[:removable] == true
 		sandbox.delete("/ticket_fields/#{del_item[:id]}.json", {:verbose => true, :override_warning => true})
 	end
@@ -34,7 +34,7 @@ items.each do |item|
 		item.each do |key, value|
 			item_payload[:ticket_field].store(key, value) unless excl_items.include?(key)
 		end
- 
+
  		puts "********************"
 		puts item
 		puts "---------------------"
@@ -48,9 +48,5 @@ items.each do |item|
 		write_to_log(production_title + "\n" + sandbox_title)
 
 		item_payload[:ticket_field].clear
-		field_payload[:ticket_field].clear
-
 	end
-
-
 end
